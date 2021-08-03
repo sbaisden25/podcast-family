@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}">
+
+    <title>Podcast Family</title>
+</head>
+
+{% block content %}
+<body>
+    <div class="container">
+     
+        <div>
+        <br>
+            <a href="{% url 'guestdirectory' %}" role="button" class="btn btn-success" alt="back chevron">Back to
+                directory</a>
+        </div>
+        <div class="guest-container">
+            <div class="guest-head">
+
+
+    {% if page_user.profile_pic %}
+
+                <img src="{{page_user.profile_pic.url}}" alt="User Profile Picture">
+                
+                {%else%}
+
+        <img src="{% static '/images/defaultprofilepic.jpg' %}" alt="Card image cap" >
+
+        
+    {% endif %}
+                
+                <h1>{{page_user.name}}</h1>
+                
+                <section class="detail-card">
+                
+
+                {% if page_user.facebook_url or page_user.instagram_url or page_user.twitter_url %}
+
+                    <h4>Socials</h4>
+
+                {% else %}
+
+                <br>
+
+                {% endif %}
+
+                
+
+                <section class="social">
+
+                        {% if page_user.facebook_url %}
+
+                        <span>
+                            <a href="{{page_user.facebook_url}}"><img src="{% static 'images/facebook.svg' %}" alt="facebook"></a>
+                        </span>
+
+                        {% endif %}
+
+                        {% if page_user.instagram_url %}
+
+                        <span>
+                            <a href="{{page_user.instagram_url}}"><img src="{% static 'images/instagram.svg' %}" alt="instagram"></a>
+                        </span>
+
+                        {% endif %}
+
+                        {% if page_user.twitter_url %}
+
+                        <span>
+                            <a href="{{page_user.twitter_url}}"><img src="{% static 'images/twitter.svg' %}" alt="twitter"></a>
+                        </span>
+
+                        {% endif %}
+
+                    </section>
+
+
+                        <h4>Specialties</h4>
+                        <section class="social">
+                            <span>
+                                <a href="#" class='categ'>Marketing</a>
+                            </span>
+                            <span>
+                                <a href="#" class='categ'>Technology</a>
+                            </span>
+                        </section>
+
+                <br>
+
+
+                        <h4>Available For</h4>
+                        <section class="social">
+                            <span>
+                                <a href="#" class='categ'>Remote</a>
+                            </span>
+                            <span>
+                                <a href="#" class='categ'>In-Person</a>
+                            </span>
+                        </section>
+
+                        <br>
+
+
+                    <h4>Location</h4>
+                    <span>{{page_user.location}}</span>
+
+
+
+                </section>
+               
+
+                
+
+
+            </div>
+            <div class="guest-detail">
+                <section class="bookmark">
+                    {% comment %} <a href="#">
+                        <img src="{% static 'images/bookmarks-white.svg' %}" alt="bookmark"> &nbsp; Bookmark
+                    </a> {% endcomment %}
+                    <a href="#">
+                        <img src="{% static 'images/mail.svg' %}" alt="Invite to Podcast"> &nbsp; Invite to Podcast
+                    </a>
+                </section>
+
+
+                {% comment %} <section class="detail-top">
+                    <section class="detail-top-left">
+                        <h4>Summary</h4>
+                        <span>{{page_user.summary}}</span>
+                    </section>
+                    <section class="detail-top-right">
+                        <h4>Available For</h4>
+                            
+                    </section>
+                </section> {% endcomment %}
+
+
+                <br>
+
+                <section class="about">
+                    <h4>About Me</h4>
+                    <section class="background">
+                        <p>{{page_user.about}}</p>
+                    </section>
+                </section>
+
+
+
+                <section class="about">
+                    <h4>Interests and Expertise</h4>
+                    <section class="background">
+                        <p>{{page_user.interests}}</p>
+                    </section>
+                </section>
+
+
+
+                <section class="about">
+                    <h4>Podcast Experience</h4>
+                    <section class="background">
+                        <p>{{page_user.pod_exp}}</p>
+                    </section>
+                </section>
+
+
+
+                <section class="about">
+                    <h4>Why I enjoy Podcasting</h4>
+                    <section class="background">
+                        <p>{{page_user.why_user_pods}}</p>
+                    </section>
+                </section>
+
+
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+<script>
+    const profileLink = document.querySelector('#dropdown')
+    const drop = document.querySelector('.profile-drop')
+
+    drop.style.visibility = 'hidden'
+
+    profileLink.addEventListener('mouseover', () => {
+        drop.style.visibility = 'visible'
+    })
+
+    profileLink.addEventListener('mouseout', () => {
+        drop.style.visibility = 'hidden'
+    })
+
+    drop.addEventListener('mouseover', () => {
+        drop.style.visibility = 'visible'
+    })
+
+    drop.addEventListener('mouseout', () => {
+        drop.style.visibility = 'hidden'
+    })
+
+    const menuBtn = document.querySelector('.hamburger')
+    const mainMenu = document.querySelector('.mobile-links')
+    const profileExpand = document.querySelector('.profile-expand')
+    const profileBtn = document.querySelector('.profileex')
+
+    const closeMenu = document.querySelector('#close-menu')
+    const closeProfileMenu = document.querySelector('#close-profile')
+
+    menuBtn.addEventListener('click', () => {
+        mainMenu.style.display = 'inherit'
+    })
+
+    closeMenu.addEventListener('click', () => {
+        mainMenu.style.display = 'none'
+    })
+
+    profileBtn.addEventListener('click', () => {
+        profileExpand.style.display = 'inherit'
+    })
+
+    closeProfileMenu.addEventListener('click', () => {
+        profileExpand.style.display = 'none'
+    })
+</script>
+
+
+</html>

@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}">
+
+    <title>Podcast Family</title>
+</head>
+
+{% block content %}
+
+<body>
+    <div class="container">
+       
+<br>
+
+        <div class="guests">
+
+{% for GuestProfile in object_list %}
+
+            <div class="guest-card">
+                <section class="guest-info">
+
+                
+    {% if GuestProfile.profile_pic %}
+                    <img src="{{GuestProfile.profile_pic.url}}" alt="User Profile Picture">
+                {%else%}
+        <img src="{% static '/images/defaultprofilepic.jpg' %}" alt="User Profile Picture" >
+    {% endif %}
+
+
+                    <section class="desc">
+                        <a href="{% url 'guestprofile' GuestProfile.pk %}">
+                            <h3>{{GuestProfile.name}}</h3>
+                        </a>
+                        {% comment %} <i>{{GuestProfile.occupation}}</i> {% endcomment %}
+                    </section>
+                </section>
+                
+                <section class="guest-bio">
+
+                    <p>{{GuestProfile.summary}}</p>
+
+                    <section class="read-more">
+                        <div class="content">
+                        
+                        </div>
+                        <div class="icon">
+                            <a href="{% url 'guestprofile' GuestProfile.pk %}" class="read-more">Show Profile<img
+                                    src="{% static 'images/chevron-right-green.svg' %}" alt="chevron right" id='c-right'></a>
+                        </div>
+                    </section>
+                </section>
+            </div>
+
+
+{% endfor%}
+
+
+
+    </div>
+</body>
+
+
+<br>
+
+
+<div class="pagination d-flex justify-content-center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="btn btn-success" role="button" href="?page=1">&laquo; first</a>
+            <a class="btn btn-success" role="button" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-success" role="button" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a class="btn btn-success" role="button" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+
+{% endblock %}
+
+<script>
+    const profileLink = document.querySelector('#dropdown')
+    const drop = document.querySelector('.profile-drop')
+
+    drop.style.visibility = 'hidden'
+
+    profileLink.addEventListener('mouseover', () => {
+        drop.style.visibility = 'visible'
+    })
+
+    profileLink.addEventListener('mouseout', () => {
+        drop.style.visibility = 'hidden'
+    })
+
+    drop.addEventListener('mouseover', () => {
+        drop.style.visibility = 'visible'
+    })
+
+    drop.addEventListener('mouseout', () => {
+        drop.style.visibility = 'hidden'
+    })
+
+    const menuBtn = document.querySelector('.hamburger')
+    const mainMenu = document.querySelector('.mobile-links')
+    const profileExpand = document.querySelector('.profile-expand')
+    const profileBtn = document.querySelector('.profileex')
+
+    const closeMenu = document.querySelector('#close-menu')
+    const closeProfileMenu = document.querySelector('#close-profile')
+
+    menuBtn.addEventListener('click', () => {
+        mainMenu.style.display = 'inherit'
+    })
+
+    closeMenu.addEventListener('click', () => {
+        mainMenu.style.display = 'none'
+    })
+
+    profileBtn.addEventListener('click', () => {
+        profileExpand.style.display = 'inherit'
+    })
+
+    closeProfileMenu.addEventListener('click', () => {
+        profileExpand.style.display = 'none'
+    })
+</script>
+
+
+</html>

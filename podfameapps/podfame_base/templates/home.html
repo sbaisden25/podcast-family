@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+   
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}">
+
+    <title>Podcast Family</title>
+</head>
+
+{% block content %}
+
+<body>
+    <div class="container text-center">
+
+    <br>
+    <p>Currently under construction.  Feel free to test functionality by signing up and creating a profile.</p>
+
+
+        {% comment %} <header>
+            <h1>Welcome to the Family</h1>
+            <p id='subheader'>This website is currently under construction.  Stay tuned for official launch.</p>
+            <hr>
+            <a class="btn btn-color" href="{% url 'guestdirectory' %}">View Guest Directory</a>
+        </header> {% endcomment %}
+
+        <img class = "img-fluid" src="{% static 'images/onair.svg' %}" alt="podcast station with window">
+        
+       <a role="button" href="{% url 'guestdirectory' %}" class="btn btn-success">Click to view our Guest directory</a>
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+
+{% endblock %}
+
+<script>
+    const profileLink = document.querySelector('#dropdown')
+    const drop = document.querySelector('.profile-drop')
+
+    drop.style.visibility = 'hidden'
+
+    profileLink.addEventListener('mouseover', () => {
+        drop.style.visibility = 'visible'
+    })
+
+    profileLink.addEventListener('mouseout', () => {
+        drop.style.visibility = 'hidden'
+    })
+
+    drop.addEventListener('mouseover', () => {
+        drop.style.visibility = 'visible'
+    })
+
+    drop.addEventListener('mouseout', () => {
+        drop.style.visibility = 'hidden'
+    })
+
+    const menuBtn = document.querySelector('.hamburger')
+    const mainMenu = document.querySelector('.mobile-links')
+    const profileExpand = document.querySelector('.profile-expand')
+    const profileBtn = document.querySelector('.profileex')
+
+    const closeMenu = document.querySelector('#close-menu')
+    const closeProfileMenu = document.querySelector('#close-profile')
+
+    menuBtn.addEventListener('click', () => {
+        mainMenu.style.display = 'inherit'
+    })
+
+    closeMenu.addEventListener('click', () => {
+        mainMenu.style.display = 'none'
+    })
+
+    profileBtn.addEventListener('click', () => {
+        profileExpand.style.display = 'inherit'
+    })
+
+    closeProfileMenu.addEventListener('click', () => {
+        profileExpand.style.display = 'none'
+    })
+</script>
+
+
+</html>

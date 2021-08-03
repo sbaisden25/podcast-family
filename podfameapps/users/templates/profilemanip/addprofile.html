@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Create Profile {% endblock %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<br>
+<h1>Create Guest Profile Page</h1>
+<br>
+
+{%load crispy_forms_tags %} 
+
+
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <button class="btn btn-success">Create</button>
+
+</div>
+
+    {% endif %}
+
+    {% endblock %}

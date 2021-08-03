@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title %} Edit Profile {% endblock %}
+
+
+{% block content %}
+
+<h1>Edit Settings </h1>
+<br>
+
+{%load crispy_forms_tags %} 
+
+<div class="form-group">
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <button class="btn btn-success">Save Changes</button>
+
+</div>
+
+    {% endblock %}
