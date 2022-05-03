@@ -1,2 +1,8 @@
 # podcast-family
-Podcast Guest Directory built with Python Django, JavaScript, PostgreSQL, Bootstrap, HTML/CSS, AWS S3, and Heroku.
+Podcast Guest Directory built with Python, Django, JavaScript, PostgreSQL, AWS S3, and Heroku.
+
+![alt text](https://github.com/sbaisden25/portfolio/blob/main/public/images/Screenshot_1.png)
+
+![alt text](https://github.com/sbaisden25/portfolio/blob/main/public/images/Screenshot_4.png)
+
+![alt text](https://github.com/sbaisden25/portfolio/blob/main/public/images/Screenshot_3.png)
